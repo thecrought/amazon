@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazons Leadership Principles Interview Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff9900;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #e68a00;
+        }
+        .question {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .principle {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #007bff;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+        .principle-image {
+            margin-top: 20px;
+            width: 100%;              /* Make the image take up 100% of the available width */
+            height: auto;             /* Maintain aspect ratio */
+            max-width: 600px;         /* Set a maximum width to ensure it doesn't stretch too wide */
+            object-fit: cover;        /* Make sure the image fills the container without distortion */
+            display: block;           /* Ensure the image is block-level for centering */
+            margin-left: auto;        /* Horizontally center the image */
+            margin-right: auto;       /* Horizontally center the image */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Leadership Principles</h1>
+        <button onclick="getRandomQuestion()">Show Random Question</button>
+        <div class="question" id="questionArea"></div>
+        <button onclick="showPrinciple()" id="showPrincipleBtn" style="display:none;">Show Principle</button>
+        <div class="principle" id="principleArea"></div>
+        <img id="principleImage" class="principle-image" style="display:none;" />
+    </div>
+
+    <script>
+        // Amazon leadership principles questions (with manual bold formatting)
+        const questions = {
+            "Customer Obsession": [
+                "<span class='bold-text'>Describe a difficult interaction you had with a customer.</span> How did you deal with it? What was the outcome? How would you handle it differently?",
+                "<span class='bold-text'>Tell me about a time when you went above and beyond for a customer.</span> Why did you do it? How did the customer respond? What was the outcome?",
+                "<span class='bold-text'>Give me an example of when you were able to anticipate a customer need with a solution/product they didn't know they needed/wanted yet.</span> How did you know they needed this? How did they respond?",
+                "<span class='bold-text'>Give me an example of a time when you asked for customer feedback.</span> How did you use that feedback to drive innovation or improvement? How did the customer respond?",
+                "<span class='bold-text'>Tell me about a time when you evaluated the customer experience of your product or service.</span> What did you do? What was the result?",
+                "<span class='bold-text'>Tell me about a time when a customer came to you for something that wouldn't actually address their need.</span> How did you approach the situation? What was the result",
+                "<span class='bold-text'>Sometimes customers make unreasonable requests. Tell me about a time when you've had to push back or say no to a customer request.</span> What did you say or do in response to that request?",
+                "<span class='bold-text'>Tell me about a time when you had to balance the needs of the customer with the needs of the business.</span> What did you do? What was the result?"
+
+            ],
+            "Ownership": [
+                "<span class='bold-text'>Tell me about a time when you took on something significant outside your area of responsibility.</span> Why was it important? What was the outcome?",
+                "<span class='bold-text'>Describe a time when you didn't think you were going to meet a commitment you promised.</span> How did you identify the risk and communicate it to stakeholders? Is there anything you would do differently?",
+                "<span class='bold-text'>Give me an example of an initiative you undertook because you saw that it could benefit the whole company or your customers, but wasn’t within any group’s individual responsibility so nothing was being done.</span>",
+                "<span class='bold-text'>Tell me about a time when you made a hard decision to sacrifice short term gain for something that would create long term value for the business.</span> What was the outcome? Knowing what you know now, would you have done anything differently?",
+                "<span class='bold-text'>Describe a time when you had to transition a project you owned to a new owner.</span> What steps did you take to make sure the transition went smoothly? Tell me about a time that you chose to get involved in a project that you had already transitioned to somebody else. What was the situation? Why was it important to get involved?",
+                "<span class='bold-text'>Tell me about a time when you saw a peer struggling and decided to step in and help.</span> What was the situation? Why did you decide to step in? What actions did you take?",
+
+            ]
+        };
+
+        // Image URLs for each principle
+        const principleImages = {
+            "Customer Obsession": "images/customerObsession.png", 
+            "Ownership": "images/ownership.png", 
+            "Invent and Simplify": "images/Invent and Simplify.jpg",
+            "Are Right, A Lot": "images/Are Right, A Lot.jpg",
+            "Learn and Be Curious": "images/Learn and Be Curious.jpg",
+            "Hire and Develop the Best": "images/Hire and Develop the Best.jpg"
+        };
+
+        let currentPrinciple = ''; // To track the current principle
+        let lastQuestionIndex = -1;  // Variable to store the index of the last shown question
+
+        function getRandomQuestion() {
+            console.log("Button clicked: A new question is being displayed.");
+
+            // Get all principles as an array
+            const principles = Object.keys(questions);
+            // Randomly select a principle
+            currentPrinciple = principles[Math.floor(Math.random() * principles.length)];
+
+            // Get the questions for the selected principle
+            const principleQuestions = questions[currentPrinciple];
+
+            // Ensure that the new question is not the same as the last one
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * principleQuestions.length);
+            } while (randomIndex === lastQuestionIndex);
+
+            lastQuestionIndex = randomIndex;
+
+            // Randomly select a question from the selected principle
+            const randomQuestion = principleQuestions[randomIndex];
+
+            // Display the formatted question in the question area (allows HTML)
+            document.getElementById("questionArea").innerHTML = randomQuestion;
+
+            // Show the "Show Principle" button
+            document.getElementById("showPrincipleBtn").style.display = "inline-block";
+            // Clear the principle area (in case a principle was already shown)
+            document.getElementById("principleArea").innerText = '';
+            document.getElementById("principleImage").style.display = "none"; // Hide image initially
+        }
+
+        function showPrinciple() {
+            // Display the principle name
+            document.getElementById("principleArea").innerText = `This question is from the principle: ${currentPrinciple}`;
+
+            // Display the relevant image
+            const principleImage = document.getElementById("principleImage");
+            principleImage.src = principleImages[currentPrinciple];  // Set the image source
+            principleImage.style.display = "block";  // Show the image
+        }
+    </script>
+</body>
+</html>
