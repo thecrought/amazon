@@ -20,6 +20,7 @@
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Add this line */
         }
         button {
             padding: 10px 20px;
@@ -56,6 +57,15 @@
             display: block;           /* Ensure the image is block-level for centering */
             margin-left: auto;        /* Horizontally center the image */
             margin-right: auto;       /* Horizontally center the image */
+
+        .counter {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
 }
 
     </style>
@@ -63,6 +73,7 @@
 <body>
     <div class="container">
         <h1>Amazon Leadership Principles</h1>
+        <div class="counter" id="questionCounter">Count: 0</div> <!-- Add this line -->
         <button onclick="getRandomQuestion()">Show Random Question</button>
         <div class="question" id="questionArea"></div>
         <button onclick="showPrinciple()" id="showPrincipleBtn" style="display:none;">Show Principle</button>
@@ -115,8 +126,14 @@
         let currentPrinciple = ''; // To track the current principle
         let lastQuestionIndex = -1;  // Variable to store the index of the last shown question
 
+        let questionCount = 0;
+
         function getRandomQuestion() {
             console.log("Button clicked: A new question is being displayed.");
+
+            // Increment the counter
+            questionCount++;
+            document.getElementById("questionCounter").innerText = `Count: ${questionCount}`;
 
             // Get all principles as an array
             const principles = Object.keys(questions);
