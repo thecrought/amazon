@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazons Leadership Principles Interview Questions</title>
+    <title>Amazon Leadership Principles Interview Questions</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f4f4f9;
         }
+
         .container {
             text-align: center;
             padding: 20px;
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: relative; /* Add this line */
+            position: relative;
+            max-width: 900px;
+            width: 90%;
         }
+
         button {
             padding: 10px 20px;
             background-color: #ff9900;
@@ -32,31 +37,39 @@
             border-radius: 5px;
             margin-top: 20px;
         }
+
         button:hover {
             background-color: #e68a00;
         }
+
         .question {
             margin-top: 20px;
             font-size: 18px;
             color: #333;
+            line-height: 1.5;
         }
+
         .principle {
             margin-top: 10px;
             font-size: 16px;
             color: #007bff;
+            font-weight: bold;
         }
+
         .bold-text {
             font-weight: bold;
         }
+
         .principle-image {
             margin-top: 20px;
-            width: 100%;              /* Make the image take up 100% of the available width */
-            height: auto;             /* Maintain aspect ratio */
-            max-width: 600px;         /* Set a maximum width to ensure it doesn't stretch too wide */
-            object-fit: cover;        /* Make sure the image fills the container without distortion */
-            display: block;           /* Ensure the image is block-level for centering */
-            margin-left: auto;        /* Horizontally center the image */
-            margin-right: auto;       /* Horizontally center the image */
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            object-fit: cover;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         .counter {
             position: absolute;
@@ -66,112 +79,143 @@
             color: #333;
             font-weight: bold;
         }
-}
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Amazon Leadership Principles</h1>
-        <div class="counter" id="questionCounter">Count: 0</div> <!-- Add this line -->
+
+        <div class="counter" id="questionCounter">Count: 0</div>
+
         <button onclick="getRandomQuestion()">Show Random Question</button>
+
         <div class="question" id="questionArea"></div>
-        <button onclick="showPrinciple()" id="showPrincipleBtn" style="display:none;">Show Principle</button>
+
+        <button onclick="showPrinciple()" id="showPrincipleBtn" style="display:none;">
+            Show Principle
+        </button>
+
         <div class="principle" id="principleArea"></div>
+
         <img id="principleImage" class="principle-image" style="display:none;" />
     </div>
 
     <script>
-        // Amazon leadership principles questions (with manual bold formatting)
         const questions = {
-            "Customer Obsession": [
-                "<span class='bold-text'>Describe a difficult interaction you had with a customer.</span> How did you deal with it? What was the outcome? How would you handle it differently?",
-                "<span class='bold-text'>Tell me about a time when you went above and beyond for a customer.</span> Why did you do it? How did the customer respond? What was the outcome?",
-                "<span class='bold-text'>Give me an example of when you were able to anticipate a customer need with a solution/product they didn't know they needed/wanted yet.</span> How did you know they needed this? How did they respond?",
-                "<span class='bold-text'>Give me an example of a time when you asked for customer feedback.</span> How did you use that feedback to drive innovation or improvement? How did the customer respond?",
-                "<span class='bold-text'>Tell me about a time when you evaluated the customer experience of your product or service.</span> What did you do? What was the result?",
-                "<span class='bold-text'>Tell me about a time when a customer came to you for something that wouldn't actually address their need.</span> How did you approach the situation? What was the result",
-                "<span class='bold-text'>Sometimes customers make unreasonable requests. Tell me about a time when you've had to push back or say no to a customer request.</span> What did you say or do in response to that request?",
-                "<span class='bold-text'>Tell me about a time when you had to balance the needs of the customer with the needs of the business.</span> What did you do? What was the result?"
-
-            ],
             "Ownership": [
                 "<span class='bold-text'>Tell me about a time when you took on something significant outside your area of responsibility.</span> Why was it important? What was the outcome?",
-                "<span class='bold-text'>Describe a time when you didn't think you were going to meet a commitment you promised.</span> How did you identify the risk and communicate it to stakeholders? Is there anything you would do differently?",
-                "<span class='bold-text'>Give me an example of an initiative you undertook because you saw that it could benefit the whole company or your customers, but wasn’t within any group’s individual responsibility so nothing was being done.</span>",
-                "<span class='bold-text'>Tell me about a time when you made a hard decision to sacrifice short term gain for something that would create long term value for the business.</span> What was the outcome? Knowing what you know now, would you have done anything differently?",
-                "<span class='bold-text'>Describe a time when you had to transition a project you owned to a new owner.</span> What steps did you take to make sure the transition went smoothly? Tell me about a time that you chose to get involved in a project that you had already transitioned to somebody else. What was the situation? Why was it important to get involved?",
-                "<span class='bold-text'>Tell me about a time when you saw a peer struggling and decided to step in and help.</span> What was the situation? Why did you decide to step in? What actions did you take?",
 
+                "<span class='bold-text'>Describe a time when you didn't think you were going to meet a commitment you promised.</span> How did you identify the risk and communicate it to stakeholders? Is there anything you would do differently?",
+
+                "<span class='bold-text'>Give me an example of an initiative you undertook because you saw that it could benefit the whole company or your customers, but wasn’t within any group’s individual responsibility so nothing was being done.</span>",
+
+                "<span class='bold-text'>Tell me about a time when you made a hard decision to sacrifice short term gain for something that would create long term value for the business.</span> What was the outcome? Knowing what you know now, would you have done anything differently?",
+
+                "<span class='bold-text'>Describe a time when you had to transition a project you owned to a new owner.</span> What steps did you take to make sure the transition went smoothly? Tell me about a time that you chose to get involved in a project that you had already transitioned to somebody else. What was the situation? Why was it important to get involved?",
+
+                "<span class='bold-text'>Tell me about a time when you saw a peer struggling and decided to step in and help.</span> What was the situation? Why did you decide to step in? What actions did you take?"
             ],
+
             "Earn Trust": [
                 "<span class='bold-text'>Tell me about a time when you had to communicate a change in direction that you anticipated people would have concerns with.</span> What did you do to understand the concerns and mitigate them? Were there any changes you made along the way after hearing these concerns? How did you handle questions and/or resistance? Were you able to get people comfortable with the change?",
+
                 "<span class='bold-text'>Give me an example of a tough or critical piece of feedback you received.</span> What was it and what did you do about it?",
+
                 "<span class='bold-text'>Describe a time when you needed to influence a peer who had a differing opinion about a shared goal.</span> What did you do? What was the outcome?",
+
                 "<span class='bold-text'>Give me an example of a time when you were not able to meet a commitment.</span> What was the commitment and what were the obstacles that prevented success? What was the impact to your customers/peers and what did you learn from it?",
+
                 "<span class='bold-text'>Tell me about a time when your team’s goals were out of alignment with another team you relied on in order to meet your goal.</span> How did you work with the other team? Were you able to achieve your goals?",
+
                 "<span class='bold-text'>Tell me about a time when you uncovered a significant problem in your team.</span> What was it and how did you communicate it to your manager and other stakeholders? What did you do to address the problem? How did you manage the impact of this problem for the rest of your team?",
+
                 "<span class='bold-text'>Describe a time when you improved morale and productivity on your team.</span> What were the underlying problems and their causes? How did you prevent them from negatively impacting the team in the future?",
-                "<span class='bold-text'>Tell me about a time when a team member was struggling at work and you stepped in to help out. Why did you think they were struggling? Why did you decided to step in and support? What did you do to help out?</span> How did it impact your work? What was the outcome? What did you learn from that situation?"
+
+                "<span class='bold-text'>Tell me about a time when a team member was struggling at work and you stepped in to help out.</span> Why did you think they were struggling? Why did you decide to step in and support? What did you do to help out? How did it impact your work? What was the outcome? What did you learn from that situation?"
+            ],
+
+            "Bias for Action": [
+                "<span class='bold-text'>Give me an example of a calculated risk that you have taken where speed was critical.</span> What was the situation and how did you handle it? What steps did you take to mitigate the risk? What was the outcome? Knowing what you know now, would you have done anything differently?",
+
+                "<span class='bold-text'>Tell me about a time when you worked against tight deadlines and didn't have time to consider all options before making a decision.</span> How much time did you have? What approach did you take? What did you learn from the situation?",
+
+                "<span class='bold-text'>Describe a situation where you made an important business decision without consulting your manager.</span> What was the situation and how did it turn out? Would you have done anything differently?",
+
+                "<span class='bold-text'>Tell me about a time when you had to gather information and respond immediately to a situation.</span> What was the outcome? Would you have done anything differently?",
+
+                "<span class='bold-text'>Give me an example of when you had to make an important decision and had to decide between moving forward or gathering more information.</span> What did you do? What was the outcome? What information is necessary for you to have before acting?",
+
+                "<span class='bold-text'>Tell me about a time when you saw an issue that would impact your team and took a proactive approach to solve it.</span> What was the issue? What did you do and what was the outcome? What did you learn from this situation?",
+
+                "<span class='bold-text'>Tell me about a time when you felt your team was not moving to action quickly enough.</span> What was the situation? What did you do? What was the outcome?"
+            ],
+
+            "Dive Deep": [
+                "<span class='bold-text'>Tell me about a time when you were trying to understand a complex problem on your team and you had to dig into the details to figure it out.</span> Who did you talk with or where did you have to look to find the most valuable information? How did you use that information to help solve the problem?",
+
+                "<span class='bold-text'>Tell me about a situation that required you to dig deep to get to the root cause.</span> How did you know you were focusing on the right things? What was the outcome? Would you have done anything differently?",
+
+                "<span class='bold-text'>Tell me about a problem you had to solve that required in-depth thought and analysis.</span> How did you know you were focusing on the right things? What was the outcome? Would you have done anything differently?",
+
+                "<span class='bold-text'>Walk me through a big problem or issue in your organization that you helped to solve.</span> How did you become aware of it? What information did you gather? What information was missing and how did you fill the gaps? Did you do a reflection at the conclusion of the project? If so, what did you learn?",
+
+                "<span class='bold-text'>Tell me about a specific metric you have used to identify a need for a change in your department.</span> Did you create the metric or was it already available? How did this and other information influence the change? What was the outcome of this change?",
+
+                "<span class='bold-text'>Have you ever created a metric that helped identify a need for a change in your department?</span> What was the metric? Why did you create it? How did this and other information influence change? What was the outcome of the change?"
             ]
         };
 
-        // Image URLs for each principle
         const principleImages = {
-            "Customer Obsession": "images/customerObsession.png", 
-            "Ownership": "images/ownership.png", 
-            "Earn Trust": "images/trust.png"
+            "Ownership": "images/ownership.png",
+            "Earn Trust": "images/trust.png",
+            "Bias for Action": "images/biasForAction.png",
+            "Dive Deep": "images/diveDeep.png"
         };
 
-        let currentPrinciple = ''; // To track the current principle
-        let lastQuestionIndex = -1;  // Variable to store the index of the last shown question
-
+        let currentPrinciple = "";
+        let lastQuestion = "";
         let questionCount = 0;
 
         function getRandomQuestion() {
-            console.log("Button clicked: A new question is being displayed.");
-
-            // Increment the counter
             questionCount++;
             document.getElementById("questionCounter").innerText = `Count: ${questionCount}`;
 
-            // Get all principles as an array
             const principles = Object.keys(questions);
-            // Randomly select a principle
-            currentPrinciple = principles[Math.floor(Math.random() * principles.length)];
 
-            // Get the questions for the selected principle
-            const principleQuestions = questions[currentPrinciple];
+            let randomQuestion = "";
 
-            // Ensure that the new question is not the same as the last one
-            let randomIndex;
             do {
-                randomIndex = Math.floor(Math.random() * principleQuestions.length);
-            } while (randomIndex === lastQuestionIndex);
+                currentPrinciple = principles[Math.floor(Math.random() * principles.length)];
 
-            lastQuestionIndex = randomIndex;
+                const principleQuestions = questions[currentPrinciple];
 
-            // Randomly select a question from the selected principle
-            const randomQuestion = principleQuestions[randomIndex];
+                randomQuestion = principleQuestions[
+                    Math.floor(Math.random() * principleQuestions.length)
+                ];
+            } while (randomQuestion === lastQuestion);
 
-            // Display the formatted question in the question area (allows HTML)
+            lastQuestion = randomQuestion;
+
             document.getElementById("questionArea").innerHTML = randomQuestion;
 
-            // Show the "Show Principle" button
             document.getElementById("showPrincipleBtn").style.display = "inline-block";
-            // Clear the principle area (in case a principle was already shown)
-            document.getElementById("principleArea").innerText = '';
-            document.getElementById("principleImage").style.display = "none"; // Hide image initially
+            document.getElementById("principleArea").innerText = "";
+            document.getElementById("principleImage").style.display = "none";
         }
 
         function showPrinciple() {
-            // Display the principle name
-            document.getElementById("principleArea").innerText = `This question is from the principle: ${currentPrinciple}`;
+            document.getElementById("principleArea").innerText =
+                `This question is from the principle: ${currentPrinciple}`;
 
-            // Display the relevant image
             const principleImage = document.getElementById("principleImage");
-            principleImage.src = principleImages[currentPrinciple];  // Set the image source
-            principleImage.style.display = "block";  // Show the image
+
+            if (principleImages[currentPrinciple]) {
+                principleImage.src = principleImages[currentPrinciple];
+                principleImage.style.display = "block";
+            } else {
+                principleImage.style.display = "none";
+            }
         }
     </script>
 </body>
